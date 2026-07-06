@@ -1,0 +1,81 @@
+{
+  "discovery": "citamecanico",
+  "generated": "2026-06-30",
+  "personas": [
+    {
+      "name": "Maestro J. (mecánico)",
+      "role": "mecanico",
+      "primary": true,
+      "backing": "primera mano",
+      "source": "mecanico.md"
+    },
+    {
+      "name": "Diego M. (cliente)",
+      "role": "cliente",
+      "primary": true,
+      "backing": "primera mano",
+      "source": "cliente.md"
+    },
+    {
+      "name": "Sra. Elena (administradora)",
+      "role": "administrador_taller",
+      "primary": true,
+      "backing": "primera mano",
+      "source": "administradora.md"
+    },
+    {
+      "name": "Proveedor de repuestos",
+      "role": "proveedor",
+      "primary": false,
+      "backing": "referenciada",
+      "source": "mecanico.md"
+    }
+  ],
+  "pains": [
+    {
+      "id": "autos-clavados-por-repuestos",
+      "source": "mecanico.md",
+      "persona": "Maestro J. (mecánico)"
+    },
+    {
+      "id": "flujo-trabajo-inaccesible-remotamente",
+      "source": "mecanico.md",
+      "persona": "Maestro J. (mecánico)"
+    },
+    {
+      "id": "falta-historial-carro-nuevo",
+      "source": "mecanico.md",
+      "persona": "Maestro J. (mecánico)"
+    },
+    {
+      "id": "desconfianza-precios-repuestos",
+      "source": "cliente.md",
+      "persona": "Diego M. (cliente)"
+    },
+    {
+      "id": "falta-contexto-visual-reparacion",
+      "source": "cliente.md",
+      "persona": "Diego M. (cliente)"
+    },
+    {
+      "id": "incumplimiento-fechas-entrega",
+      "source": "cliente.md",
+      "persona": "Diego M. (cliente)"
+    },
+    {
+      "id": "saturacion-ingreso-sin-cita",
+      "source": "administradora.md",
+      "persona": "Sra. Elena (administradora)"
+    },
+    {
+      "id": "descontrol-inventario-repuestos",
+      "source": "administradora.md",
+      "persona": "Sra. Elena (administradora)"
+    },
+    {
+      "id": "comunicacion-manual-estado-trabajo",
+      "source": "administradora.md",
+      "persona": "Sra. Elena (administradora)"
+    }
+  ]
+}

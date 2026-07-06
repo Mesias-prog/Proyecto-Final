@@ -1,0 +1,81 @@
+{
+  "discovery": "mecanicoautomotriz",
+  "generated": "2026-07-04",
+  "personas": [
+    {
+      "name": "A. (asesor de servicio)",
+      "role": "asesor",
+      "primary": true,
+      "backing": "primera mano",
+      "source": "asesor.md"
+    },
+    {
+      "name": "Carlos (jefe de taller)",
+      "role": "mecanico",
+      "primary": true,
+      "backing": "primera mano",
+      "source": "mecanico.md"
+    },
+    {
+      "name": "C. (cliente)",
+      "role": "cliente",
+      "primary": true,
+      "backing": "primera mano",
+      "source": "cliente.md"
+    },
+    {
+      "name": "Dueño del taller",
+      "role": "dueno",
+      "primary": false,
+      "backing": "referenciada",
+      "source": "asesor.md"
+    }
+  ],
+  "pains": [
+    {
+      "id": "sobreagendamiento-bahias",
+      "source": "asesor.md",
+      "persona": "A. (asesor de servicio)"
+    },
+    {
+      "id": "llamadas-estado-vehiculo",
+      "source": "asesor.md",
+      "persona": "A. (asesor de servicio)"
+    },
+    {
+      "id": "notificaciones-manuales-estado",
+      "source": "asesor.md",
+      "persona": "A. (asesor de servicio)"
+    },
+    {
+      "id": "clientes-no-llegan-cita",
+      "source": "mecanico.md",
+      "persona": "Carlos (jefe de taller)"
+    },
+    {
+      "id": "ordenes-trabajo-inaccesibles-movil",
+      "source": "mecanico.md",
+      "persona": "Carlos (jefe de taller)"
+    },
+    {
+      "id": "falta-historial-mantenimiento",
+      "source": "mecanico.md",
+      "persona": "Carlos (jefe de taller)"
+    },
+    {
+      "id": "agendamiento-telefonico-lento",
+      "source": "cliente.md",
+      "persona": "C. (cliente)"
+    },
+    {
+      "id": "olvido-fecha-mantenimiento",
+      "source": "cliente.md",
+      "persona": "C. (cliente)"
+    },
+    {
+      "id": "incertidumbre-estado-reparacion",
+      "source": "cliente.md",
+      "persona": "C. (cliente)"
+    }
+  ]
+}

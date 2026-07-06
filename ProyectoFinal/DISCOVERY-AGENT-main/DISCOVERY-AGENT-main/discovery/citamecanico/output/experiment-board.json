@@ -1,0 +1,46 @@
+{
+  "discovery": "citamecanico",
+  "generated": "2026-06-30",
+  "hypotheses": [
+    {
+      "id": "H-01",
+      "assumption": "La mayoría de los clientes actuales del taller tiene WhatsApp activo y lo usa habitualmente, de modo que el envío de cotizaciones, fotos y estados de reparación por ese canal será efectivo.",
+      "hypothesis": "Creemos que ≥70% de los clientes interactuará con las actualizaciones y aprobará presupuestos por WhatsApp si les enviamos el estado de su reparación por ahí, porque Diego M. en cliente.md lo prefiere pero representa solo una parte de la base total de clientes.",
+      "metric": "Tasa de respuesta o aprobación de presupuestos de los clientes ante un mensaje de WhatsApp de prueba dentro de las primeras 4 horas.",
+      "threshold": "≥70% de los 30 clientes contactados responde o aprueba el presupuesto por mensaje dentro de las 4 horas del envío.",
+      "experiment": "Broadcast de WhatsApp + entrevistas dirigidas: enviar reportes de avance y fotos del estado de las piezas a 30 clientes usando el WhatsApp personal de la administradora; medir tasa de respuesta. Complementar con 5 entrevistas cortas a clientes de distintos perfiles.",
+      "decision": "Si pasa (≥70% responden) → usar WhatsApp como canal principal de comunicación y aprobación en el MVP. Si falla (<70%) → evaluar canal alternativo (llamadas telefónicas tradicionales) o flujo mixto antes de automatizar el canal.",
+      "risk": "alto"
+    },
+    {
+      "id": "H-02",
+      "assumption": "La administradora Sra. Elena dejará de usar el cuaderno de notas desde el primer día de adopción del sistema digital para el inventario y las citas, sin uso paralelo que genere descontrol de stock.",
+      "hypothesis": "Creemos que la Sra. Elena registrará ≥95% de las entradas de carros y salidas de repuestos exclusivamente en el sistema digital si se le provee de un flujo simple en su computadora, porque cualquier registro paralelo en papel neutralizaría la capacidad del sistema de prevenir el descontrol de repuestos.",
+      "metric": "Porcentaje de órdenes de trabajo y movimientos de stock registrados únicamente en el sistema digital durante los primeros 5 días hábiles de operación.",
+      "threshold": "≥95% de los movimientos se registran solo en el sistema digital en los primeros 5 días hábiles, sin anotaciones paralelas en su cuaderno.",
+      "experiment": "Piloto Mago de Oz de 1 semana: reemplazar el cuaderno de inventario y citas con una planilla de Google Sheets compartida en tiempo real con el taller. Al final de los 5 días, auditar cuántas órdenes pasaron solo por la hoja vs. cuántas aparecieron también en papel.",
+      "decision": "Si pasa (≥95% en sistema) → construir el flujo de administración con confianza en la adopción. Si falla (<95%) → identificar la fricción que la devuelve al cuaderno (ej. lentitud al buscar piezas) y rediseñar el flujo antes de programar.",
+      "risk": "alto"
+    },
+    {
+      "id": "H-03",
+      "assumption": "El costo mensual de la API de WhatsApp Business (Meta) para el volumen de notificaciones y fotos del taller es asumible para un negocio automotriz pequeño/mediano.",
+      "hypothesis": "Creemos que el costo mensual de la API de WhatsApp Business será ≤5% de los ingresos mensuales del taller si calculamos el gasto basado en el volumen real de carros atendidos, porque el precio de Meta es por conversación iniciada y un taller tiene un volumen acotado pero de alto ticket por cliente.",
+      "metric": "Costo mensual proyectado de la API de WhatsApp Business como porcentaje de los ingresos mensuales estimados del taller.",
+      "threshold": "El costo mensual calculado es ≤5% de los ingresos mensuales del taller O ≤45 USD/mes.",
+      "experiment": "Desk research + entrevista de 20 min con la administradora: obtener el volumen de carros mensual y el ingreso promedio por reparación; calcular el costo con la tabla de precios Meta para LatAm considerando el envío de archivos multimedia (fotos de repuestos); comparar con alternativas.",
+      "decision": "Si pasa (≤5% ingresos o ≤45 USD/mes) → comprometer la arquitectura al canal WhatsApp Business. Si falla (costo alto por el peso de imágenes/videos) → evaluar proveedores externos con planes planos o limitar el uso de multimedia a casos críticos.",
+      "risk": "medio"
+    },
+    {
+      "id": "H-04",
+      "assumption": "El Maestro J. definirá los tiempos estimados de reparación y marcará el fin de los trabajos de forma consistente desde su celular sin requerir que la administradora vaya a buscarlo a la fosa.",
+      "hypothesis": "Creemos que el Maestro J. registrará el estado 'trabajo terminado' dentro de los 30 min de finalizar la reparación si dispone de una interfaz de 2 pasos o menos en un celular en el taller, porque mecanico.md muestra que el acceso a la información y organizar las rampas es su dolor principal.",
+      "metric": "Porcentaje de trabajos marcados como listos dentro de los 30 min de su finalización real, sobre el total de reparaciones en el piloto de 2 semanas.",
+      "threshold": "≥90% de las reparaciones terminadas durante el piloto de 2 semanas se notifican en el sistema dentro de los 30 min de liberar la rampa.",
+      "experiment": "Piloto Mago de Oz de 2 semanas: entregar al mecánico un tablero simple en Google Calendar o Trello compartido con la recepción; pedirle que mueva la tarjeta del carro a 'Listo' usando una tablet o celular en el taller. Medir el tiempo de desfase vs. la hora de entrega real.",
+      "decision": "Si pasa (≥90% a tiempo) → confiar en el modelo de auto-gestión del mecánico para generar la facturación. Si falla (<90%) → mantener el flujo donde la administradora confirma manualmente, o implementar un sistema de alertas físicas en el taller.",
+      "risk": "medio"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "project": "taller-mecanico-mvp",
+  "generated": "2026-07-04",
+  "metric_of_success": "Reducción de llamadas telefónicas de '¿Cómo está mi carro?' en un 50% al tercer mes de operación.",
+  "epics": [
+    {
+      "id": "E-01",
+      "title": "Agendamiento de bahías online sin llamadas",
+      "value": "Clientes reservan turno en bahía 24/7. Cero dobles ocupaciones de bahías. Asesor recupera tiempo dedicado a gestionar agenda telefónica.",
+      "priority": 1,
+      "rationale": "Cuello de botella principal: el uso del cuaderno/Excel manual genera conflictos. Es el prerrequisito para la operatividad del taller.",
+      "personas": ["C. (cliente)", "A. (asesor de servicio)"],
+      "pains_addressed": ["agenda-telefonica-caotica", "sobreagendamiento-bahias", "llamadas-coordinacion-agenda"],
+      "origin": ["mvp:F1", "mvp:F2", "us:US-01", "us:US-02", "req:R-01", "req:R-02", "req:R-06", "evidence:asesor.md", "evidence:cliente.md"]
+    },
+    {
+      "id": "E-02",
+      "title": "Notificaciones automáticas de estado del vehículo",
+      "value": "Reducción drástica de llamadas de estado. Cliente informado proactivamente (en revisión, reparado, listo para retiro).",
+      "priority": 2,
+      "rationale": "Ataca el dolor recurrente del cliente sobre la incertidumbre de su vehículo y libera al asesor de llamadas repetitivas.",
+      "personas": ["C. (cliente)", "A. (asesor de servicio)", "Carlos (jefe de taller)"],
+      "pains_addressed": ["llamadas-estado-vehiculo", "cliente-ansioso-falta-info"],
+      "origin": ["mvp:F3", "us:US-03", "req:R-03", "evidence:asesor.md", "evidence:cliente.md"]
+    },
+    {
+      "id": "E-03",
+      "title": "Control operativo de órdenes y bahías",
+      "value": "Jefe de taller consulta órdenes en celular desde el piso. Puede bloquear bahías por mantenimiento o imprevistos.",
+      "priority": 3,
+      "rationale": "Sin visibilidad móvil, el jefe de taller depende de notas en papel o preguntar al asesor, lo cual es ineficiente en el piso de operaciones.",
+      "personas": ["Carlos (jefe de taller)", "A. (asesor de servicio)"],
+      "pains_addressed": ["ordenes-en-papel-perdidas", "desincronizacion-bahias"],
+      "origin": ["mvp:F4", "mvp:F5", "us:US-04", "us:US-05", "req:R-04", "req:R-07", "req:R-08", "evidence:mecanico.md", "evidence:asesor.md"]
+    },
+    {
+      "id": "E-04",
+      "title": "Diagnóstico previo (segunda fase)",
+      "value": "Taller conoce la falla reportada antes de recibir el vehículo, optimizando la asignación de repuestos.",
+      "priority": 4,
+      "rationale": "Fuera del MVP. Se prioriza la reserva y el estado de la reparación sobre la captura de diagnóstico detallado.",
+      "personas": ["Carlos (jefe de taller)"],
+      "pains_addressed": ["falta-info-falla-previa"],
+      "origin": ["mvp:fuera-de-alcance", "us:US-06", "req:R-05", "evidence:mecanico.md"]
+    }
+  ],
+  "stories": [
+    {
+      "id": "US-01",
+      "epic": "E-01",
+      "as_a": "cliente",
+      "want": "agendar un turno de servicio en línea en cualquier momento",
+      "so_that": "no tener que depender del horario de atención telefónica del taller",
+      "acceptance_criteria": [
+        "Dado que el cliente accede al sistema, cuando elige fecha, hora y bahía disponible, y confirma, entonces la reserva queda registrada y recibe confirmación por WhatsApp.",
+        "Dado que el cliente intenta seleccionar una bahía ocupada, cuando confirma, entonces el sistema la muestra como no disponible."
+      ],
+      "estimate": 8,
+      "dependencies": [],
+      "open_questions": [],
+      "priority": 1,
+      "origin": ["us:US-01", "req:R-01", "evidence:cliente.md"]
+    },
+    {
+      "id": "US-02",
+      "epic": "E-01",
+      "as_a": "asesor",
+      "want": "que el sistema impida asignar la misma bahía a dos vehículos simultáneamente",
+      "so_that": "evitar cuellos de botella operativos y conflictos con clientes que llegan y no tienen espacio",
+      "acceptance_criteria": [
+        "Dado que dos usuarios intentan reservar la misma bahía, cuando el primero confirma, entonces el segundo recibe un error de 'bahía ocupada' antes de finalizar.",
+        "Dado que existe una orden activa en una bahía, cuando se intenta reservar, entonces el sistema rechaza la operación."
+      ],
+      "estimate": 5,
+      "dependencies": [],
+      "open_questions": [],
+      "priority": 2,
+      "origin": ["us:US-02", "req:R-02", "evidence:asesor.md"]
+    },
+    {
+      "id": "US-03",
+      "epic": "E-02",
+      "as_a": "cliente",
+      "want": "recibir notificaciones automáticas por WhatsApp sobre el estado de mi reparación",
+      "so_that": "sepa cuándo mi vehículo está listo para retiro sin necesidad de llamar al taller",
+      "acceptance_criteria": [
+        "Dado que un vehículo cambia de estado (ej. 'reparación iniciada', 'listo para retiro'), cuando el jefe de taller actualiza el sistema, entonces el cliente recibe un WhatsApp automático.",
+        "Dado que el cliente recibe la notificación de listo, cuando responde confirmando su llegada, entonces el sistema alerta al asesor."
+      ],
+      "estimate": 8,
+      "dependencies": ["US-01"],
+      "open_questions": [],
+      "priority": 3,
+      "origin": ["us:US-03", "req:R-03", "evidence:asesor.md", "evidence:cliente.md"]
+    },
+    {
+      "id": "US-04",
+      "epic": "E-03",
+      "as_a": "jefe de taller",
+      "want": "consultar mis órdenes de trabajo desde el celular con actualización en tiempo real",
+      "so_that": "pueda trabajar sin ir a la oficina a preguntar qué autos tengo pendientes",
+      "acceptance_criteria": [
+        "Dado que el jefe de taller accede desde el piso de operaciones, cuando abre la app, entonces ve la lista de vehículos, estado y bahía asignada.",
+        "Dado que se asigna una nueva orden, cuando ocurre, entonces la lista se actualiza automáticamente (polling) sin recargar la página."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-01"],
+      "open_questions": [],
+      "priority": 4,
+      "origin": ["us:US-04", "req:R-04", "req:R-08", "evidence:mecanico.md"]
+    },
+    {
+      "id": "US-05",
+      "epic": "E-03",
+      "as_a": "jefe de taller",
+      "want": "bloquear bahías por mantenimiento o imprevistos",
+      "so_that": "los clientes no agenden servicios cuando la bahía no está operativa",
+      "acceptance_criteria": [
+        "Dado que bloqueo una bahía, cuando confirmo, entonces esa bahía desaparece de la disponibilidad pública inmediatamente.",
+        "Dado que hay un bloqueo activo, cuando un cliente intenta agendar, entonces el sistema no le permite seleccionar esa bahía."
+      ],
+      "estimate": 3,
+      "dependencies": ["US-01", "US-04"],
+      "open_questions": [],
+      "priority": 5,
+      "origin": ["us:US-05", "req:R-07", "evidence:mecanico.md", "evidence:asesor.md"]
+    },
+    {
+      "id": "US-06",
+      "epic": "E-04",
+      "as_a": "cliente",
+      "want": "indicar brevemente la falla de mi vehículo al agendar",
+      "so_that": "el taller esté preparado con el equipo necesario al recibir el auto",
+      "acceptance_criteria": [
+        "Dado que el cliente reserva, cuando llega al paso de confirmación, entonces puede escribir la falla (campo opcional).",
+        "Dado que la orden se crea, cuando el jefe de taller la revisa, entonces ve el detalle de la falla reportada."
+      ],
+      "estimate": 2,
+      "dependencies": ["US-01", "US-04"],
+      "open_questions": [],
+      "priority": 6,
+      "origin": ["us:US-06", "req:R-05", "evidence:mecanico.md"]
+    }
+  ]
+}
